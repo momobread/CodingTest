@@ -31,3 +31,5 @@ function solution(phone_number) {
 
   return answer;
 }
+
+//한번에 못맞춘 이유
