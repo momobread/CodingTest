@@ -57,25 +57,45 @@
 // });
 //한번에 못맞춘 이유 : return을 주는게 아니라 console.log로 답을 입력
 // \n을 추가할때 +=로 해야지 answer = \n이렇게 해서 틀림
-function solution(arr) {
-  var answer = [arr[0]];
+// function solution(arr) {
+//   var answer = [arr[0]];
 
-  // [실행] 버튼을 누르면 출력 값을 볼 수 있습니다.
-  // console.log('Hello Javascript')
+//   // [실행] 버튼을 누르면 출력 값을 볼 수 있습니다.
+//   // console.log('Hello Javascript')
 
-  for (let i = 1; i < arr.length; i++) {
-    console.log(answer.length);
-    if (answer[answer.length - 1] != arr[i]) {
-      answer.push(arr[i]);
-      console.log("jel");
-    } else {
-      console.log("같음");
-      //   break;
-    }
+//   for (let i = 1; i < arr.length; i++) {
+//     console.log(answer.length);
+//     if (answer[answer.length - 1] != arr[i]) {
+//       answer.push(arr[i]);
+//       console.log("jel");
+//     } else {
+//       console.log("같음");
+//       //   break;
+//     }
+//   }
+
+//   return answer;
+// }
+
+// console.log(solution([4, 4, 4, 3, 3]));
+//한번에 못맞춘 이유 : break를 불필요하게 썼다
+function solution(n) {
+  var answer = 0;
+  let na = "";
+
+  while (n / 3 >= 1) {
+    na += `${n % 3}`; //45/3 =15 나머지 0  15/3 = 5 / 3
+    n = Math.floor(n / 3);
+    console.log(na);
   }
-
+  na += `${Math.floor(n)}`;
+  console.log(na);
+  answer = parseInt(Number(na), 3);
   return answer;
 }
 
-console.log(solution([4, 4, 4, 3, 3]));
-//한번에 못맞춘 이유 : break를 불필요하게 썼다
+console.log(solution(2));
+
+//💡한번에 못맞춘이유
+// 나누기 하면 몫만 나오는게 아니라 소수점까지 나오는데
+//while문 쓸때 >0 하니까 0.112344 0.4822949494 이런식으로 계속 나오게되서 틀림
