@@ -11,7 +11,8 @@ function solution(s) {
   for (let i = 0; i < answer.length; i++) {
     answer += answer[i].slice(1, -1); //걸리적 거리는거 다 없애기
   }
-
+  console.log("//////");
+  console.log(answer);
   //여기서 부터 객체 카운팅
   for (let i = 0; i < answer.length; i = i + 2) {
     let keys = Object.keys(pair);
@@ -43,8 +44,20 @@ function solution(s) {
     }
   }
   //value값으로 정렬하기
-  console.log(pair);
+  answer = Object.entries(pair).sort((a, b) => (a[1] < b[1] ? 1 : -1));
+
+  // 첫번째 값은 Key, 두번째 값은 Value
+
+  //   console.log(pair);
+  console.log("정렬된 배열ㅇ비니다");
+  console.log(answer);
+  answer = answer.map((v, i) => Number(v[0]));
+
   return answer;
 }
 
 solution("{{2},{2,1},{2,1,3},{2,1,3,4}}");
+
+//이렇게 하면 한자리는 되는데 두자리세리부터 안된다
+//왜?? =>각 원소의 순히 배열을 i+2씩 해서 수동으로 순회해서 그렇다
+//
