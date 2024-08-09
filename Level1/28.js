@@ -1,54 +1,24 @@
 //문자열 내 마음대로 정렬하기
 
-//1.반복문을 돌린다
-//2.특정 인덱스랑 비교한다
-//3.i의 인덱스와 i+1의 인덱스를 비교했을때 크면 뒤로 민다
-//4.n-1번 반복
-//버블정렬!!
-
 function solution(strings, n) {
-  var answer = [];
-  let tmp = '';
-  let tmpN = n;
+  return strings.sort((a, b) => {
+    const chr1 = a.charAt(n);
+    const chr2 = b.charAt(n);
 
-  for (let i = 0; i < strings.length - 1; i++) {
-    //n-1번 돌아가지롱
-    for (let j = 0; j < strings.length - 1 - i; j++) {
-      // 하나씩 줄어들면서 첨부터 끝까지 비교
-      if (strings[j][n].charCodeAt() > strings[j + 1][n].charCodeAt()) {
-        tmp = strings[j];
-        strings[j] = strings[j + 1];
-        strings[j + 1] = tmp;
-        tmp = '';
-        //   } else if (
-        //     strings[j][n].charCodeAt() === strings[j + 1][n].charCodeAt()
-        //   ) {
-        //     while (!tmp) {
-        //       tmpN = tmpN + 1;
-        //       if (
-        //         strings[j][tmpN].charCodeAt() > strings[j+1][tmpN].charCodeAt()
-        //       ) {
-        //         tmp = strings[j];
-        //         strings[j] = strings[j + 1];
-        //         strings[j + 1] = tmp;
-        //       }
-        //     }
-
-        // tmp = '';
-      } else if (
-        strings[j][n].charCodeAt() === strings[j + 1][n].charCodeAt()
-      ) {
-        tmpN = tmpN + 1;
-        console.log(strings[j][tmpN]);
-      }
+    if (chr1 == chr2) {
+      //아스키코드가 같으면
+      return (a > b) - (a < b); //걍 사전순 정렬
+    } else {
+      //아니면
+      return (chr1 > chr2) - (chr1 < chr2);
     }
-  }
-
-  return strings;
+  });
 }
 
-// console.log(solution(['sun', 'bed', 'car'], 1));
+function solution2(strings, n) {
+  return strings.sort((s1, s2) =>
+    s1[n] === s2[n] ? s1.localeCompare(s2) : s1[n].localeCompare(s2[n])
+  );
+}
 
-console.log(solution(['sun', 'sun', 'sun'], 1));
-
-// console.log(['abd', 'abce', 'eb']);
+solution(['car', 'bed', 'sun'], 2);
